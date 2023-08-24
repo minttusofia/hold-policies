@@ -117,6 +117,7 @@ scikit-learn==0.20.1
 scipy==1.7.3
 git+https://github.com/hartikainen/serializable.git@76516385a3a716ed4a2a9ad877e2d5cbcf18d4e6#egg=serializable
 setproctitle==1.1.10
+-e git+https://github.com/minttusofia/dvd_sim_envs.git#egg=sim_env
 six==1.11.0
 smmap2==2.0.5
 soupsieve==2.4.1

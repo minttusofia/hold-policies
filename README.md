@@ -23,6 +23,9 @@ $ python -c "import mujoco_py"
 
 ## Installation
 
+Note: If you have previously installed [hold-rewards](https://github.com/minttusofia/hold-rewards/), we recommend installing this repo in a separate Python environment. This is because this SAC implementation uses TF1, whereas the scenic library used by hold-rewards makes some references to TF2 (although it mainly uses JAX).  
+However, HOLD reward models can be used for inference in HOLD policy training from a TF1-compatible branch of hold-rewards (this branch is automatically selected in `/requirements.txt`). If you also wish to train models using the hold-rewards repo, use its main branch in another Python environment.
+
 ```shell
 $ git clone https://github.com/minttusofia/hold-policies.git
 $ cd hold-policies
@@ -37,16 +40,13 @@ For example, to install jax for CUDA >= 11.1 and cuDNN >= 8.2, run:
 $ pip install "jax[cuda11_cudnn82]>=0.2.21,<0.3" -f https://storage.googleapis.com/jax-releases/jax_cuda_releases.html
 ```
 
-Note: This SAC implementation uses TF1, whereas the scenic library used by hold-rewards makes some references to TF2 (although it mainly uses JAX). Nonetheless, hold-rewards models can be imported and used for inference in SAC policy training from a TF1-compatible branch of hold-rewards (this branch is automatically selected in `requirements.txt`). If you also wish to train models using the hold-rewards repo, we recommend installing the main branch of hold-rewards in a separate Python environment as hold-policies.
-
-
-The RLV and [DVD](https://github.com/anniesch/dvd) environments also have an incompatible dependency as they rely on different versions of [Meta-World](https://github.com/Farama-Foundation/Metaworld). We recommend installing them in separate virtual environments. Please see the dvd repo for instructions.
-
 
 ## Reproducing HOLD policy training experiments
 
 Command lines for reproducing policy training experiments are given in `/launch_scripts`.  
-Before running them, set the environment variable `HOLD_TOP_DIR` to the top-level directory containing distance model checkpoints and goal images. Trained distance models used in the paper are available [here](https://github.com/minttusofia/hold-rewards/tree/main#trained-models) and the goal images are included in `/goal_images` (copy them to `$HOLD_TOP_DIR/goal_images`). Policy training output will be written under `$HOLD_TOP_DIR/hold_policies`.
+
+Before running them, set the environment variable `HOLD_TOP_DIR` to the top-level directory containing distance model checkpoints and goal images. Trained distance models used in the paper are available [here](https://github.com/minttusofia/hold-rewards/tree/main#trained-models) and the goal images are included in `/goal_images` (copy them to `$HOLD_TOP_DIR/goal_images`).  
+Policy training output will be written under `$HOLD_TOP_DIR/hold_policies`.
 
 Usage example:
 ```shell
